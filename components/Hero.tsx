@@ -1,3 +1,5 @@
+import Header from "./Header";
+
 const techIcons = [
     { name: "JavaScript", icon: "/javascript.png", orbit: 1 },
     { name: "TypeScript", icon: "/typescript.png", orbit: 1 },
@@ -60,7 +62,7 @@ const TechOrbit = ({ radius, duration, icons, reverse = false }: { radius: numbe
 
 const Hero = () => {
     return (
-        <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-slate-50 selection:bg-blue-500/30">
+        <div className="flex flex-col items-center justify-center overflow-hidden bg-[#f8fafb] selection:bg-primary/20">
             {/* Aurora Background Effect */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] bg-blue-400/20 rounded-full blur-[120px] animate-aurora mix-blend-multiply"></div>
@@ -68,9 +70,9 @@ const Hero = () => {
                 <div className="absolute -bottom-[20%] left-[20%] w-[50%] h-[50%] bg-sky-400/20 rounded-full blur-[110px] animate-aurora delay-1000 mix-blend-multiply"></div>
             </div>
 
+            <Header />
 
-
-            <section className="relative z-10 w-full max-w-6xl mx-auto px-6 py-16 flex flex-col items-center">
+            <section className="relative z-10 w-full max-w-6xl mx-auto px-6 py-12 md:py-16 flex flex-col items-center">
                 <div className="relative mb-6 flex items-center justify-center">
                     {/* Orbiting Icons */}
                     <div className="absolute inset-0 z-0 flex items-center justify-center scale-75 md:scale-100">
@@ -100,15 +102,15 @@ const Hero = () => {
 
                 <div className="relative z-20 text-center space-y-3 max-w-2xl">
                     <div className="space-y-1">
-                        <h1 className="font-serif text-5xl md:text-7xl leading-[1.1] text-slate-900 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-150">
+                        <h1 className="font-serif text-4xl md:text-7xl leading-[1.1] text-slate-900 animate-in fade-in slide-in-from-bottom-6 duration-1000 delay-150">
                             The <span className="italic text-gradient">Architect</span>
                         </h1>
-                        <h2 className="text-primary font-bold uppercase tracking-[0.3em] text-xs md:text-sm animate-in fade-in slide-in-from-bottom-4 duration-700">
+                        <h2 className="text-primary font-bold uppercase tracking-[0.3em] text-[10px] md:text-xs animate-in fade-in slide-in-from-bottom-4 duration-700">
                             Software Engineer
                         </h2>
                     </div>
                     
-                    <p className="text-slate-500 md:text-lg font-light leading-relaxed max-w-lg mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
+                    <p className="text-slate-500 text-sm md:text-lg font-light leading-relaxed max-w-lg mx-auto animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-300">
                         Crafting scalable, high-performance tech solutions for world-class business problems.
                     </p>
 

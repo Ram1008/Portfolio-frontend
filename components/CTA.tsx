@@ -1,94 +1,172 @@
 "use client";
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 
 const CTA = () => {
-    return (
-        <section className="relative flex flex-col min-h-screen py-10 px-6 bg-white overflow-hidden">
+    const [focusedField, setFocusedField] = useState<string | null>(null);
 
-            <div className="relative z-10 flex-1 flex flex-col items-center justify-center max-w-4xl mx-auto w-full space-y-12">
-                <div className="flex flex-col items-center gap-6">
-                    <img 
-                        src="/contact_3d.png" 
-                        alt="3D Contact Icon"
-                        className="w-24 h-24 md:w-32 md:h-32 drop-shadow-2xl"
-                    />
-                    <div className="text-center space-y-4">
-                        <h2 className="font-serif text-4xl md:text-5xl text-slate-900 dark:text-white leading-tight">
-                            Let's build something <br/>
-                            <span className="italic text-primary">exceptional</span> together.
-                        </h2>
-                        <p className="text-slate-500 dark:text-slate-400 text-lg font-light max-w-md mx-auto">
-                            Currently open to senior roles and high-impact architectural consultations.
-                        </p>
+    return (
+        <section className="relative flex flex-col min-h-screen bg-white overflow-hidden selection:bg-primary/20">
+
+            {/* Subtle ambient gradient */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+                <div className="absolute -bottom-[30%] -right-[20%] w-[60%] h-[60%] bg-blue-100/30 rounded-full blur-[140px] animate-aurora" />
+                <div className="absolute -top-[20%] -left-[15%] w-[50%] h-[50%] bg-indigo-100/20 rounded-full blur-[120px] animate-aurora delay-700" />
+            </div>
+
+            {/* Main Content */}
+            <div className="relative z-10 flex flex-col items-center justify-center max-w-5xl mx-auto w-full p-6 pb-0">
+
+                {/* Headline */}
+                <div className="text-center mb-4 space-y-3">
+                    {/* Section label — matches BestWorks & Skills pattern */}
+                    <div className="flex items-center justify-center gap-2">
+                        <span className="w-8 h-[1px] bg-primary"></span>
+                        <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">
+                            Let&apos;s Connect
+                        </span>
+                        <span className="w-8 h-[1px] bg-primary"></span>
                     </div>
+                    <h2 className="font-serif text-3xl md:text-4xl text-slate-900 leading-[1.15]">
+                        Got a vision?
+                        <br />
+                        <span className="italic text-gradient">Let&apos;s build it.</span>
+                    </h2>
+                    <p className="text-slate-500 text-sm md:text-base font-light max-w-md mx-auto leading-relaxed">
+                        Currently open to senior roles &amp; high-impact
+                        <br className="hidden md:block" /> architectural consultations.
+                    </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 w-full">
-                    {/* Contact Form */}
-                    <div className="p-8 rounded-[40px] bg-white dark:bg-slate-800 shadow-2xl shadow-slate-200/50 dark:shadow-none border border-slate-100 dark:border-slate-700 space-y-6">
-                        <div className="space-y-4">
-                            <div className="space-y-1">
-                                <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 px-1">Full Name</label>
-                                <input type="text" placeholder="John Doe" className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border-none ring-1 ring-slate-200/50 dark:ring-slate-700 focus:ring-2 focus:ring-primary transition-all text-sm outline-none"/>
-                            </div>
-                            <div className="space-y-1">
-                                <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 px-1">Email Address</label>
-                                <input type="email" placeholder="john@example.com" className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border-none ring-1 ring-slate-200/50 dark:ring-slate-700 focus:ring-2 focus:ring-primary transition-all text-sm outline-none"/>
-                            </div>
-                            <div className="space-y-1">
-                                <label className="text-[10px] font-bold uppercase tracking-widest text-slate-400 px-1">Message</label>
-                                <textarea rows={4} placeholder="How can I help you?" className="w-full px-5 py-4 rounded-2xl bg-slate-50 dark:bg-slate-900 border-none ring-1 ring-slate-200/50 dark:ring-slate-700 focus:ring-2 focus:ring-primary transition-all text-sm outline-none resize-none"/>
-                            </div>
+                {/* Two-Column Layout */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-14 w-full ">
+
+                    {/* Contact Form — 3 cols */}
+                    <form className="space-y-3" onSubmit={(e) => e.preventDefault()}>
+                        {/* Name */}
+                        <div className='flex md: flex-col'>
+
+                        <div className="relative group">
+                            <input
+                                type="text"
+                                id="cta-name"
+                                placeholder="Your name"
+                                onFocus={() => setFocusedField('name')}
+                                onBlur={() => setFocusedField(null)}
+                                className="peer w-full px-0 py-3.5 bg-transparent border-b border-slate-200 focus:border-primary outline-none text-slate-800 text-sm placeholder:text-slate-300 transition-colors duration-300"
+                            />
+                            <div className={`absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ease-out ${focusedField === 'name' ? 'w-full' : 'w-0'}`} />
                         </div>
-                        <button className="w-full py-4 bg-blue-600 text-white font-bold rounded-2xl shadow-xl shadow-blue-600/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2">
-                            Send Inquiry
-                            <span className="material-symbols-outlined text-sm">send</span>
+
+                        {/* Email */}
+                        <div className="relative group">
+                            <input
+                                type="email"
+                                id="cta-email"
+                                placeholder="Your email"
+                                onFocus={() => setFocusedField('email')}
+                                onBlur={() => setFocusedField(null)}
+                                className="peer w-full px-0 py-3.5 bg-transparent border-b border-slate-200 focus:border-primary outline-none text-slate-800 text-sm placeholder:text-slate-300 transition-colors duration-300"
+                            />
+                            <div className={`absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ease-out ${focusedField === 'email' ? 'w-full' : 'w-0'}`} />
+                        </div>
+                        </div>
+
+                        {/* Message */}
+                        <div className="relative group">
+                            <textarea
+                                id="cta-message"
+                                rows={3}
+                                placeholder="Tell me about your project..."
+                                onFocus={() => setFocusedField('message')}
+                                onBlur={() => setFocusedField(null)}
+                                className="peer w-full px-0 py-3.5 bg-transparent border-b border-slate-200 focus:border-primary outline-none text-slate-800 text-sm placeholder:text-slate-300 transition-colors duration-300 resize-none"
+                            />
+                            <div className={`absolute bottom-0 left-0 h-[2px] bg-primary transition-all duration-500 ease-out ${focusedField === 'message' ? 'w-full' : 'w-0'}`} />
+                        </div>
+
+                        {/* Submit */}
+                        <button
+                            type="submit"
+                            className="group/btn mt-2 inline-flex items-center gap-3 px-8 py-3.5 bg-slate-900 text-white text-sm font-medium rounded-full hover:bg-primary active:scale-[0.97] transition-all duration-300 shadow-lg shadow-slate-900/10 hover:shadow-primary/25"
+                        >
+                            Send Message
+                            <span className="inline-flex items-center justify-center w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-1">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </span>
                         </button>
-                    </div>
+                    </form>
 
-                    {/* Socials & Info */}
-                    <div className="flex flex-col justify-between py-4 space-y-8">
-                        <div className="space-y-6 text-center md:text-left">
+
+                    {/* Info Sidebar — 2 cols */}
+                    <div className="flex md:flex-col justify-between space-y-10 md:pl-8 md:border-l md:border-slate-100">
+
+                        {/* Direct Contact */}
+                        <div className="space-y-8">
                             <div className="space-y-2">
-                                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary">Direct Contact</h3>
-                                <p className="text-2xl font-serif text-slate-800 dark:text-slate-100">hello@ramchandel.com</p>
+                                <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">Email</p>
+                                <a href="mailto:hello@ramchandel.com" className="text-slate-800 font-medium text-sm hover:text-primary transition-colors duration-300">
+                                    hello@ramchandel.com
+                                </a>
                             </div>
                             <div className="space-y-2">
-                                <h3 className="text-[10px] font-bold uppercase tracking-widest text-primary">Location</h3>
-                                <p className="text-lg text-slate-600 dark:text-slate-400 font-light italic">Available Globally / Remote & On-site</p>
+                                <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">Based in</p>
+                                <p className="text-slate-800 font-medium text-sm">
+                                    Remote &mdash; Global
+                                </p>
                             </div>
                         </div>
 
-                        <div className="grid grid-cols-2 gap-4">
-                            <Link href="https://linkedin.com/in/ramchandel" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-4 rounded-3xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                                <div className="w-12 h-12 p-3 flex items-center justify-center rounded-2xl bg-white shadow-lg transition-transform group-hover:rotate-12">
-                                    <img src="/linkedin.png" alt="LinkedIn" className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400">LinkedIn</span>
-                                    <span className="text-sm font-medium">@ramchandel</span>
-                                </div>
-                            </Link>
-                            <Link href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-4 p-4 rounded-3xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-800 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-                                <div className="w-12 h-12 p-3 flex items-center justify-center rounded-2xl bg-white shadow-lg transition-transform group-hover:-rotate-12">
-                                    <img src="/whatsapp.png" alt="WhatsApp" className="w-full h-full object-contain filter grayscale group-hover:grayscale-0 transition-all duration-300" />
-                                </div>
-                                <div className="flex flex-col">
-                                    <span className="text-xs font-bold uppercase tracking-widest text-slate-400">WhatsApp</span>
-                                    <span className="text-sm font-medium">Let's chat</span>
-                                </div>
-                            </Link>
+                        {/* Social Links */}
+                        <div className="space-y-4">
+                            <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">Elsewhere</p>
+                            <div className="flex flex-col gap-3">
+                                <Link
+                                    href="https://linkedin.com/in/ramchandel"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group/link flex items-center gap-3 text-slate-500 hover:text-primary transition-colors duration-300"
+                                >
+                                    <div className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100 group-hover/link:border-primary/30 group-hover/link:bg-primary/5 transition-all duration-300">
+                                        <img src="/linkedin.png" alt="LinkedIn" className="w-4 h-4 object-contain opacity-50 group-hover/link:opacity-100 transition-opacity duration-300" />
+                                    </div>
+                                    <span className="text-sm font-medium">LinkedIn</span>
+                                    <svg className="w-3 h-3 ml-auto opacity-0 -translate-x-2 group-hover/link:opacity-50 group-hover/link:translate-x-0 transition-all duration-300" viewBox="0 0 16 16" fill="none">
+                                        <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </Link>
+                                <Link
+                                    href="https://wa.me/91XXXXXXXXXX"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group/link flex items-center gap-3 text-slate-500 hover:text-green-600 transition-colors duration-300"
+                                >
+                                    <div className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-50 border border-slate-100 group-hover/link:border-green-200 group-hover/link:bg-green-50 transition-all duration-300">
+                                        <img src="/whatsapp.png" alt="WhatsApp" className="w-4 h-4 object-contain opacity-50 group-hover/link:opacity-100 transition-opacity duration-300" />
+                                    </div>
+                                    <span className="text-sm font-medium">WhatsApp</span>
+                                    <svg className="w-3 h-3 ml-auto opacity-0 -translate-x-2 group-hover/link:opacity-50 group-hover/link:translate-x-0 transition-all duration-300" viewBox="0 0 16 16" fill="none">
+                                        <path d="M1 8H15M15 8L8 1M15 8L8 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                    </svg>
+                                </Link>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            {/* Footer Copy */}
-            <footer className="relative z-10 text-center py-6 border-t border-slate-200 dark:border-slate-800 pb-24">
-                <p className="text-[10px] font-bold uppercase tracking-[0.5em] text-slate-400">
-                    &copy; 2024 Design. Code. Architect.
-                </p>
+            {/* Minimal Footer */}
+            <footer className="relative z-10 py-6 pb-20">
+                <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3">
+                    <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">
+                        &copy; {new Date().getFullYear()} Ram Chandel
+                    </p>
+                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-slate-400">
+                        Design · Code · Architect
+                    </p>
+                </div>
             </footer>
         </section>
     )

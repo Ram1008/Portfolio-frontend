@@ -10,22 +10,22 @@ const socialLinks = [
 
 const Header = () => {
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between py-6 px-4 w-full max-w-7xl mx-auto pointer-events-none">
+        <header className="bg-transparent relative flex items-center justify-between py-5 md:py-6 px-4 md:px-6 w-full max-w-7xl mx-auto">
             <Link 
                 href="/" 
-                className="text-xl md:text-2xl font-serif tracking-tight text-slate-800 pointer-events-auto"
+                className="text-lg md:text-2xl font-serif tracking-tight text-slate-800"
             >
                 Ram Chandel
             </Link>
             
-            <div className="flex items-center gap-1 md:gap-4 pointer-events-auto">
+            <div className="flex items-center gap-1.5 md:gap-4">
                 {socialLinks.map((link, i) => (
                     <Link 
                         key={i}
                         href={link.href}
                         target={link.href.startsWith('http') ? "_blank" : undefined}
                         rel={link.href.startsWith('http') ? "noopener noreferrer" : undefined}
-                        className={`w-6 h-6 md:w-8 md:h-8 p-0.5 flex items-center justify-center transition-all duration-300 group`}
+                        className={`w-6 h-6 md:w-8 md:h-8 p-0.5 flex items-center justify-center transition-all duration-300 group hover:scale-110`}
                         title={link.name}
                     >
                         <img 

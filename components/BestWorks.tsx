@@ -77,36 +77,44 @@ const BestWorks = () => {
   };
 
   return (
-    <section className="relative h-full flex flex-col py-16 bg-white overflow-hidden">
+    <section className="h-screen flex flex-col bg-white overflow-hidden">
       {/* Section Header */}
-      <div className="max-w-7xl mx-auto w-full my-3 px-6 md:px-12 flex items-end justify-between">
-          <h2 className="font-serif text-3xl md:text-5xl text-slate-900 leading-tight">
-            Best <span className="italic text-blue-600">Works</span>
+      <div className="max-w-7xl mx-auto w-full pt-4 pb-2 px-6 md:px-12 flex flex-col">
+        <div className="flex items-center gap-2 mt-4">
+          <span className="w-8 h-[1px] bg-primary"></span>
+          <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">The Hands On</span>
+        </div>
+        <div className="flex justify-between ">
+
+          <h2 className="font-serif text-3xl md:text-4xl text-slate-900 leading-tight">
+            Best <span className="italic text-primary">Works</span>
           </h2>
-          <Link 
+          <Link
             href="/archive"
-            className="flex items-center gap-2 text-blue-600 text-xs md:text-base font-bold hover:text-slate-900 transition-colors duration-300 group whitespace-nowrap mb-1 md:mb-2"
+            className="flex items-center gap-2 text-primary text-[10px] md:text-xs font-bold hover:text-slate-900 transition-colors duration-300 group whitespace-nowrap mb-1 md:mb-2"
           >
             view all
             <span className="material-symbols-outlined text-sm md:text-lg group-hover:translate-x-1 transition-transform">arrow_right_alt</span>
           </Link>
+        </div>
+
       </div>
 
-      {/* Gallery Container - Flex-1 to fill space */}
-      <div className="relative flex flex-col justify-center min-h-0 overflow-hidden">
-        <div 
+      {/* Gallery Container - flex-1 fills remaining height after header */}
+      <div className="relative flex-1 flex flex-col min-h-0 pb-[80px]">
+        <div
           ref={scrollRef}
           onScroll={handleScroll}
-          className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 md:px-[calc((100vw-min(1280px,92vw))/2)] no-scrollbar scroll-smooth"
+          className="flex overflow-x-auto snap-x snap-mandatory gap-6 px-6 md:px-[calc((100vw-min(1280px,92vw))/2)] no-scrollbar scroll-smooth h-full"
         >
           {projects.map((project, index) => (
             <div
               key={index}
-              className="flex-none w-[88vw] md:w-[540px] max-h-full snap-center group/card pt-2"
+              className="flex-none w-[88vw] md:w-[540px] h-full snap-center group/card py-2"
             >
               <div className="relative h-full flex flex-col bg-white rounded-[40px] overflow-hidden border border-slate-100 shadow-[0_15px_40px_rgba(0,0,0,0.04)] transition-all duration-500 hover:shadow-[0_40px_80px_rgba(0,0,0,0.08)] hover:-translate-y-1">
-                {/* Image Section - Reduced aspect ratio for height efficiency */}
-                <div className="relative aspect-[16/10] overflow-hidden shrink-0">
+                {/* Image Section - Top 40% of card height */}
+                <div className="relative h-[45%] overflow-hidden shrink-0">
                   <img
                     src={project.thumbnail}
                     alt={project.title}
@@ -121,7 +129,7 @@ const BestWorks = () => {
                       {project.category}
                     </span>
                     {project.isFeatured && (
-                      <span className="px-3.5 py-1.5 bg-blue-600 rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-white shadow-2xl shadow-blue-600/40">
+                      <span className="px-3.5 py-1.5 bg-primary rounded-full text-[9px] font-bold uppercase tracking-[0.2em] text-white shadow-2xl shadow-primary/40">
                         Featured
                       </span>
                     )}
@@ -132,7 +140,7 @@ const BestWorks = () => {
                     {project.githubUrl && (
                       <Link
                         href={project.githubUrl}
-                        className="w-10 h-10 flex items-center justify-center rounded-2xl bg-white/90 backdrop-blur-md text-slate-900 hover:bg-blue-600 hover:text-white transition-all shadow-xl"
+                        className="w-10 h-10 flex items-center justify-center rounded-2xl bg-white/90 backdrop-blur-md text-slate-900 hover:bg-primary hover:text-white transition-all shadow-xl"
                       >
                         <span className="material-symbols-outlined text-lg">code</span>
                       </Link>
@@ -140,7 +148,7 @@ const BestWorks = () => {
                     {project.liveUrl && (
                       <Link
                         href={project.liveUrl}
-                        className="w-10 h-10 flex items-center justify-center rounded-2xl bg-blue-600 text-white hover:bg-slate-900 transition-all shadow-xl"
+                        className="w-10 h-10 flex items-center justify-center rounded-2xl bg-primary text-white hover:bg-slate-900 transition-all shadow-xl"
                       >
                         <span className="material-symbols-outlined text-lg">open_in_new</span>
                       </Link>
@@ -148,8 +156,8 @@ const BestWorks = () => {
                   </div>
                 </div>
 
-                {/* Content Section - More compact padding */}
-                <div className="p-6 md:p-8 flex-1 flex flex-col justify-between space-y-4">
+                {/* Content Section - Bottom 60% of card height */}
+                <div className="p-5 md:p-7 flex-1 flex flex-col justify-between space-y-3 overflow-y-auto">
                   <div className="space-y-2.5">
                     <h3 className="text-xl md:text-2xl font-serif font-medium text-slate-900 transition-colors duration-300">
                       {project.title}
@@ -164,7 +172,7 @@ const BestWorks = () => {
                     {project.technologies.slice(0, 4).map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="px-2.5 py-0.5 rounded-lg bg-slate-50 text-[9px] font-bold text-slate-500 uppercase tracking-widest border border-slate-100 italic"
+                        className="px-2.5 py-0.5 rounded-lg bg-slate-50 text-[9px] font-bold text-slate-400 uppercase tracking-widest border border-slate-100 italic"
                       >
                         {tech}
                       </span>
@@ -194,8 +202,8 @@ const BestWorks = () => {
         {/* Swipe Intuition Arrow - Slimmer for Mobile */}
         {showArrow && (
           <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-20 pointer-events-none animate-pulse flex items-center gap-2 md:gap-3">
-            <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-blue-600 text-white shadow-2xl shadow-blue-600/30">
-               <span className="material-symbols-outlined text-sm md:text-base animate-[bounce-x_1.5s_infinite]">arrow_right_alt</span>
+            <div className="w-8 h-8 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-primary text-white shadow-2xl shadow-primary/30">
+              <span className="material-symbols-outlined text-sm md:text-base animate-[bounce-x_1.5s_infinite]">arrow_right_alt</span>
             </div>
           </div>
         )}
