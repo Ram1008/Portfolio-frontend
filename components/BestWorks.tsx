@@ -79,7 +79,7 @@ const BestWorks = () => {
   return (
     <section className="h-screen flex flex-col bg-white overflow-hidden">
       {/* Section Header */}
-      <div className="max-w-7xl mx-auto w-full pt-4 pb-2 px-6 md:px-12 flex flex-col">
+      <div className="max-w-7xl mx-auto w-full pt-6 md:pt-10 pb-2 px-6 md:px-12 lg:px-20 flex flex-col">
         <div className="flex items-center gap-2 mt-4">
           <span className="w-8 h-[1px] bg-primary"></span>
           <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">The Hands On</span>

@@ -57,7 +57,7 @@ const Skills = () => {
     const activeDomain = domains[selected];
 
     return (
-        <section className="relative flex flex-col h-screen py-6 md:py-8 px-6 bg-[#f8fafb] overflow-hidden">
+        <section className="relative flex flex-col h-screen pt-10 md:pt-12 pb-8 bg-[#f8fafb] overflow-hidden">
             {/* Aurora Background Effect */}
             <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
                 <div className="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] bg-blue-400/10 rounded-full blur-[120px] animate-aurora mix-blend-multiply"></div>
@@ -66,7 +66,7 @@ const Skills = () => {
             </div>
 
             {/* Header */}
-            <header className="relative z-10 flex flex-col gap-1.5 mb-5 md:mb-8 shrink-0">
+            <header className="relative z-10 flex flex-col gap-1.5 mb-5 md:mb-8 shrink-0 max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20">
                 <div className="flex items-center gap-2">
                     <span className="w-8 h-[1px] bg-primary"></span>
                     <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary">The knowledge base</span>
@@ -78,7 +78,7 @@ const Skills = () => {
             </header>
 
             {/* Main Content */}
-            <div className="relative z-10 flex-1 flex flex-col min-h-0 pb-16">
+            <div className="relative z-10 flex-1 flex flex-col min-h-0 pb-16 max-w-7xl mx-auto w-full px-6 md:px-12 lg:px-20">
 
                 {/* Domain Selector Row */}
                 <div className="shrink-0 mb-6 md:mb-8">

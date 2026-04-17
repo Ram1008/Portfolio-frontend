@@ -15,7 +15,7 @@ const CTA = () => {
             </div>
 
             {/* Main Content */}
-            <div className="relative z-10 flex flex-col items-center justify-center max-w-5xl mx-auto w-full p-6 pb-0">
+            <div className="relative z-10 flex flex-col items-center justify-center max-w-5xl mx-auto w-full pt-12 md:pt-16 px-6 pb-0 md:px-12 lg:px-20">
 
                 {/* Headline */}
                 <div className="text-center mb-4 space-y-3">
@@ -159,7 +159,7 @@ const CTA = () => {
 
             {/* Minimal Footer */}
             <footer className="relative z-10 py-6 pb-20">
-                <div className="max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-3">
+                <div className="max-w-5xl mx-auto px-6 md:px-12 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-3">
                     <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.3em] text-slate-400">
                         &copy; {new Date().getFullYear()} Ram Chandel
                     </p>
